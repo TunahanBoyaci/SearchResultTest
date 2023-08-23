@@ -17,9 +17,9 @@ public class SearchTestResult {
     }
 
     @When("User type {string} into the search box")
-    public void userTypeIntoTheSearchBox(String arg0) {
+    public void userTypeIntoTheSearchBox(String string) {
         WebElement searchInbox = ParameterDriver.getDriver().findElement(By.cssSelector("input[id='inputValEnter']"));
-        searchInbox.sendKeys("teddy bear");
+        searchInbox.sendKeys(string);
     }
 
     @And("Click on the search button")
@@ -28,8 +28,8 @@ public class SearchTestResult {
         searchButton.click();
     }
 
-    @Then("{string} is displayed")
-    public void isDisplayed(String arg0) {
+    @Then("Results are displayed")
+    public void isDisplayed() {
         WebElement textResult = ParameterDriver.getDriver().findElement(By.xpath("//div[@id='searchMessageContainer']//div//span[contains(text(),'results')]"));
         Assert.assertTrue(textResult.isDisplayed());
         Assert.assertTrue(textResult.getText().contains("results"));
